@@ -2,8 +2,8 @@ package com.example.back_end;
 
 import com.example.back_end.Entity.*;
 import com.example.back_end.Repository.*;
-import com.example.back_end.dto.Resource.ExchageInfoTbSaveDto;
-import com.example.back_end.dto.Resource.ExchageTbSaveDto;
+import com.example.back_end.dto.Exchange.ExchageInfoTbSaveDto;
+import com.example.back_end.dto.Exchange.ExchageTbSaveDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,13 +30,10 @@ public class ExchangeControllerTest {
     @LocalServerPort
     private int port;
 
-
     @Autowired
     private ExchangeTbRepository tbRepository;
     @Autowired
     private ExchangeInfoTbRepository infoRepository;
-
-
 
     @Autowired
     private WebApplicationContext context;
@@ -63,8 +60,6 @@ public class ExchangeControllerTest {
         country.add("United States");
         country.add("China");
 
-
-
         for(int i = 0; i < currencyName.size(); i++)
         {
             ExchageTbSaveDto requestDto = ExchageTbSaveDto.builder()
@@ -89,7 +84,6 @@ public class ExchangeControllerTest {
     public void ExchangeTbInfoSaveTest()throws Exception {
 
         //given
-//        String exchangeDatePk = "2023-09-";
 
         List<Float> exchangeRate = new ArrayList<Float>();
         exchangeRate.add(1325.82f);
@@ -99,7 +93,7 @@ public class ExchangeControllerTest {
         currencyName.add("RMB");
 
         List<ExchageInfoTbSaveDto> requestDto = new ArrayList<ExchageInfoTbSaveDto>();
-        for (int j = 0; j < 2; j++) {
+        for (int j = 0; j < exchangeRate.size(); j++) {
             for (int i = 1; i < 30; i++) {
                 String exchangeDatePk = "";
                 if (i < 10) {
@@ -113,18 +107,21 @@ public class ExchangeControllerTest {
                         .currencyName(currencyName.get(j))
                         .build();
                 requestDto.add(entity);
-
             }
-
-
-            String url = "http://localhost:" + port + "/exchange/infosave";
-            //when
-            mvc.perform(post(url)
-                            .contentType(MediaType.APPLICATION_JSON_UTF8)
-                            .content(new ObjectMapper().writeValueAsString(requestDto)))
-                    .andExpect(status().isOk());
-            List<ExchangeInfoTb> all = infoRepository.findAll();
-//        assertThat(all.get(0).getExchangeDatePk()).isEqualTo(exchangeDatePk);
         }
+        String url = "http://localhost:" + port + "/exchange/infosave";
+        //when
+        mvc.perform(post(url)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+        List<ExchangeInfoTb> all = infoRepository.findAll();
+//        assertThat(all.get(0).getExchangeDatePk()).isEqualTo(exchangeDatePk);
+    }
+
+    @Test
+    public void TestAll()throws Exception {
+        ExchangeTb_save_test();
+        ExchangeTbInfoSaveTest();
     }
 }

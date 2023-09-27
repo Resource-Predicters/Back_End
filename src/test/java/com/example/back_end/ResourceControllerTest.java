@@ -74,7 +74,6 @@ public class ResourceControllerTest {
         resourceSymbol.add("Fe");
         resourceSymbol.add("Co");
 
-
     for (int i = 0; i < resourceEngName.size(); i++)
     {
         ResourceTbSaveDto requestDto = ResourceTbSaveDto.builder()
@@ -136,7 +135,6 @@ public class ResourceControllerTest {
         resourceSymbol.add("Co");
         String unit_id_name = "USD/ton";
 
-
         List<ResourcePriceInfoTbSaveDto> requests = new ArrayList<ResourcePriceInfoTbSaveDto>();
 
         int index = 0;
@@ -145,15 +143,8 @@ public class ResourceControllerTest {
             for (int i = 1; i < 30; i++)
             {
                 String resourceDatePk = "";
-                if(i < 10)
-                {
-                    resourceDatePk = "2023-09-0" + Integer.toString(i);
-                }
-                else
-                {
-                    resourceDatePk = "2023-09-" + Integer.toString(i);
-                }
-
+                if(i < 10) { resourceDatePk = "2023-09-0" + Integer.toString(i); }
+                else { resourceDatePk = "2023-09-" + Integer.toString(i); }
                 ResourcePriceInfoTbSaveDto entity = ResourcePriceInfoTbSaveDto.builder()
                         .resourceDatePk(resourceDatePk)
                         .price(price.get(j) + i)
@@ -163,9 +154,6 @@ public class ResourceControllerTest {
                 requests.add(entity);
             }
         }
-
-
-
 
         String url = "http://localhost:" + port + "/resource/infosave";
 
@@ -181,10 +169,11 @@ public class ResourceControllerTest {
 //        assertThat(all.get(0).getResource_kor_name()).isEqualTo(price);
     }
 
+
     @Test
-    public void Info_test() throws Exception{
-        ResourceTb result =  codeRepository.findByResourceSymbol("Ni").get();
-        System.out.println(result.getResourceEngName());
-        System.out.println();
+    public void TestAll()throws Exception {
+        UnitTb_save_test();
+        ResourceTb_save_test();
+        Info_save_test();
     }
 }

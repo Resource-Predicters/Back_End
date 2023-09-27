@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -49,42 +51,48 @@ public class ResourceSerivce {
 //    public int ResourceInfoSave(List<Resource_price_info_tb_save_dto> requestDto)
     public int ResourceInfoSave(List<ResourcePriceInfoTbSaveDto> requestDto)
     {
+        List<ResourcePriceInfoTb> entityList = new ArrayList<ResourcePriceInfoTb>();
+        String symbol = "";
+        UnitTb unitTb = null;
+        ResourceTb resourceTb = null;
         for (ResourcePriceInfoTbSaveDto dto : requestDto)
         {
             ResourcePriceInfoIdTb A =  ResourcePriceInfoIdTb.builder()
                     .resourceDatePk(LocalDate.parse(dto.getResourceDatePk(), DateTimeFormatter.ISO_DATE)).build();
-            ResourcePriceInfoTb entity = dto.toEntity(
+
+            if(!Objects.equals(symbol, dto.getResourceTbSymbol()))
+            {
+                symbol = dto.getResourceTbSymbol();
+                unitTb = FindIdByUnit(dto.getUnitIdName());
+                resourceTb =FindIdBySymbol(dto.getResourceTbSymbol());
+            }
+            ResourcePriceInfoTb saveEntity = dto.toEntity(
                     A,
-                    FindIdBySymbol(dto.getResourceTbSymbol()),
-                    FindIdByUnit(dto.getUnitIdName()));
-            infoRepository.save(entity);
+                    resourceTb,
+                    unitTb);
+            entityList.add(saveEntity);
         }
+        infoRepository.saveAll(entityList);
         return 1;
     }
 
-//    public List<ResourceAllVo> GetInfo(LocalDate startDate)
     public List<ResourceAllVo> GetInfo(String Date)
 
     {
         LocalDate startDate = LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
         LocalDate endDate = LocalDate.now();
         List<ResourcePriceInfoTb> result = infoRepository.findByResourcePriceInfoIdTb_ResourceDatePkBetweenOrderByResourceIdMk_resourceIdPk(startDate, endDate);
-
-
-        // 아래꺼 해결
-                List<ResourceAllVo> voList = result.stream().map(
+        List<ResourceAllVo> voList = result.stream().map(
                 resourcePriceInfoTb -> ResourceAllVo.builder()
-                        .date(resourcePriceInfoTb.getResourcePriceInfoIdTb().getResourceDatePk())
-                        .price(resourcePriceInfoTb.getPrice())
-                        .korName(resourcePriceInfoTb.getResourceIdMk().getResourceKorName())
-                        .engName(resourcePriceInfoTb.getResourceIdMk().getResourceEngName())
-                        .Symbol(resourcePriceInfoTb.getResourceIdMk().getResourceSymbol())
-                        .unit(resourcePriceInfoTb.getUnitIdFk().getUnitName())
-                        .build()
+                    .date(resourcePriceInfoTb.getResourcePriceInfoIdTb().getResourceDatePk())
+                    .price(resourcePriceInfoTb.getPrice())
+                    .korName(resourcePriceInfoTb.getResourceIdMk().getResourceKorName())
+                    .engName(resourcePriceInfoTb.getResourceIdMk().getResourceEngName())
+                    .Symbol(resourcePriceInfoTb.getResourceIdMk().getResourceSymbol())
+                    .unit(resourcePriceInfoTb.getUnitIdFk().getUnitName())
+                    .build()
         ).collect(Collectors.toList());
-
         return voList;
-       // return null;
     }
 
 

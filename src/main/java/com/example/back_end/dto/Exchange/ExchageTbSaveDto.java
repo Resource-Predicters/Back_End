@@ -1,4 +1,4 @@
-package com.example.back_end.dto.Resource;
+package com.example.back_end.dto.Exchange;
 
 
 import com.example.back_end.Entity.ExchangeTb;

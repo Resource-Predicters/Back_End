@@ -3,14 +3,16 @@ package com.example.back_end.Service;
 import com.example.back_end.Entity.*;
 import com.example.back_end.Repository.ExchangeInfoTbRepository;
 import com.example.back_end.Repository.ExchangeTbRepository;
-import com.example.back_end.dto.Resource.ExchageInfoTbSaveDto;
-import com.example.back_end.dto.Resource.ExchageTbSaveDto;
+import com.example.back_end.dto.Exchange.ExchageInfoTbSaveDto;
+import com.example.back_end.dto.Exchange.ExchageTbSaveDto;
 import com.example.back_end.vo.Resource.ExchangeAllVo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,18 +37,25 @@ public class ExchageService {
 
     public void InfoSave(List<ExchageInfoTbSaveDto> requestDto)
     {
+        List<ExchangeInfoTb> entityList = new ArrayList<ExchangeInfoTb>();
+        String CurrencyName = "";
+        ExchangeTb exchangeTb = null;
         for (ExchageInfoTbSaveDto dto : requestDto)
         {
             ExchangeInfoIdTb AId = ExchangeInfoIdTb.builder()
                     .exchangeDatePk(LocalDate.parse(dto.getExchangeDatePk(), DateTimeFormatter.ISO_DATE))
                     .build();
-
-            ExchangeInfoTb entity = dto.toEntity(
+            if(!Objects.equals(CurrencyName, dto.getCurrencyName()))
+            {
+                CurrencyName = dto.getCurrencyName();
+                exchangeTb = findByCurrencyName(dto.getCurrencyName());
+            }
+            ExchangeInfoTb saveEntity = dto.toEntity(
                     AId,
-                    findByCurrencyName(dto.getCurrencyName()));
-
-            infoRepository.save(entity);
+                    exchangeTb);
+            entityList.add(saveEntity);
         }
+        infoRepository.saveAll(entityList);
     }
 
     public List<ExchangeAllVo>GetInfo(String Date)

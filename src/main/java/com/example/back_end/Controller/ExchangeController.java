@@ -3,8 +3,8 @@ package com.example.back_end;
 
 import com.example.back_end.Entity.ExchangeTb;
 import com.example.back_end.Service.ExchageService;
-import com.example.back_end.dto.Resource.ExchageInfoTbSaveDto;
-import com.example.back_end.dto.Resource.ExchageTbSaveDto;
+import com.example.back_end.dto.Exchange.ExchageInfoTbSaveDto;
+import com.example.back_end.dto.Exchange.ExchageTbSaveDto;
 import com.example.back_end.vo.Resource.ExchangeAllVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
