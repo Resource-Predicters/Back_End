@@ -18,6 +18,4 @@ public interface ExchangeInfoTbRepository extends JpaRepository<ExchangeInfoTb, 
             "ORDER BY i.currencyIdPk.currentyIdPk"
     )
     List<ExchangeInfoTb> findByExchangeInfoIdTb_ExchangeDatePkBetween(LocalDate start, LocalDate end);
-
-
 }
