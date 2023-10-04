@@ -90,9 +90,6 @@ public class ResourceSerivce {
                         .unit(resourcePriceInfoTb.getUnitIdFk().getUnitName())
                         .build()
         ).collect(Collectors.toList());
-
-        voList = voList.stream().sorted(Comparator.comparing(ResourceInfoVo::getSymbol)).collect(Collectors.toList());
-
         return voList;
     }
 

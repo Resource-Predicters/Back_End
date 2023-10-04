@@ -76,9 +76,6 @@ public class ExchageService {
                         .currency(resourcePriceInfoTb.getCurrencyIdPk().getCountry())
                         .build()
         ).collect(Collectors.toList());
-
-        voList = voList.stream().sorted(Comparator.comparing(ExchangeInfoVo::getCurrencySymbol)).collect(Collectors.toList());
-
         return voList;
     }
 
