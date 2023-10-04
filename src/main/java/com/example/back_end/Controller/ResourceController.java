@@ -6,7 +6,7 @@ import com.example.back_end.Service.ResourceSerivce;
 import com.example.back_end.dto.Resource.ResourcePriceInfoTbSaveDto;
 import com.example.back_end.dto.Resource.ResourceTbSaveDto;
 import com.example.back_end.dto.Resource.UnitTbSaveDto;
-import com.example.back_end.vo.Resource.ResourceAllVo;
+import com.example.back_end.vo.Resource.ResourceInfoVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,6 @@ public class ResourceController {
         this.resourceSerivce = resourceSerivce;
     }
 
-
     @PostMapping("/tbsave")
     public int TbSave(@RequestBody ResourceTbSaveDto requestDto )
     {
@@ -34,10 +33,10 @@ public class ResourceController {
     {
         return resourceSerivce.ResourceInfoSave(requestDto);
     }
-    @GetMapping("/getinfoall")
+    @GetMapping("/getinfo")
     public ResponseEntity<Object> GetInfo(String date)
     {
-        List<ResourceAllVo> result = resourceSerivce.GetInfo(date);
+        List<ResourceInfoVo> result = resourceSerivce.GetInfo(date);
         return ResponseEntity.ok().body(
                 result);
     }
@@ -53,17 +52,4 @@ public class ResourceController {
     {
         return resourceSerivce.GetTbAll();
     }
-
-
-
-//    @GetMapping("/getItme")
-//    public ResponseEntity<Object> getItme()
-//    {
-//        List<ResourceAllVo> result = resourceSerivce.ResourceAll();
-//        return ResponseEntity.ok().body(
-//                result);
-//    }
-
-
-
 }

@@ -14,7 +14,7 @@ public interface ResourceInfoRepository extends JpaRepository<ResourcePriceInfoT
             "FROM ResourcePriceInfoTb i LEFT OUTER JOIN ResourceTb r on i.resourceIdMk = r " +
             "LEFT OUTER JOIN UnitTb u on i.unitIdFk = u " +
             "WHERE i.resourcePriceInfoIdTb.resourceDatePk BETWEEN :start AND :end " +
-            "ORDER BY i.resourceIdMk.resourceIdPk"
+            "ORDER BY i.resourcePriceInfoIdTb.resourceDatePk "
             )
     List<ResourcePriceInfoTb> findByResourcePriceInfoIdTb_ResourceDatePkBetweenOrderByResourceIdMk_resourceIdPk(LocalDate start, LocalDate end);
 }

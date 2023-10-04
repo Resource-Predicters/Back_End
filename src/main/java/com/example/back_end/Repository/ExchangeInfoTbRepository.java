@@ -9,13 +9,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ExchangeInfoTbRepository extends JpaRepository<ExchangeInfoTb, ExchangeInfoIdTb> {
-
-
-
     @Query(value ="SELECT i, r " +
             "FROM ExchangeInfoTb i LEFT OUTER JOIN ExchangeTb r on i.currencyIdPk = r " +
             "WHERE i.exchangeInfoIdTb.exchangeDatePk BETWEEN :start AND :end " +
-            "ORDER BY i.currencyIdPk.currentyIdPk"
+            "ORDER BY i.currencyIdPk.currentyIdPk desc "
     )
     List<ExchangeInfoTb> findByExchangeInfoIdTb_ExchangeDatePkBetween(LocalDate start, LocalDate end);
 }

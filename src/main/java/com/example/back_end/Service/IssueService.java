@@ -6,11 +6,14 @@ import com.example.back_end.Entity.ResourceTb;
 import com.example.back_end.Repository.IssueTbRepository;
 import com.example.back_end.Repository.ResourceTbRepository;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
+import com.example.back_end.vo.Resource.ExchangeInfoVo;
+import com.example.back_end.vo.Resource.IssueInfoVo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class IssueService {
@@ -26,11 +29,23 @@ public class IssueService {
     {
         tbRepository.save(issueTbDto.toEntity(FindResourceTbID(issueTbDto.getResourceSymbol()),LocalDate.parse(issueTbDto.getIssueDate(), DateTimeFormatter.ISO_DATE)));
     }
-    public List<IssueTb> find(String Date)
+    public List<IssueInfoVo> find(String Date)
     {
         LocalDate startDate = LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
         LocalDate endDate = LocalDate.now();
-        return tbRepository.findByIssueDateBetween(startDate, endDate);
+        List<IssueTb> result = tbRepository.findByIssueDateBetween(startDate, endDate);
+        List<IssueInfoVo> voList =  result.stream().map(
+                IssueTb -> IssueInfoVo.builder()
+                        .title(IssueTb.getTitle())
+                        .publisher(IssueTb.getPublisher())
+                        .url(IssueTb.getUrl())
+                        .resourceKorName(IssueTb.getResourceIdPk().getResourceKorName())
+                        .resourceEngName(IssueTb.getResourceIdPk().getResourceEngName())
+                        .resourceSymbol(IssueTb.getResourceIdPk().getResourceSymbol())
+                        .build()
+        ).collect(Collectors.toList());
+
+        return voList;
     }
     public ResourceTb FindResourceTbID(String symbol)
     {

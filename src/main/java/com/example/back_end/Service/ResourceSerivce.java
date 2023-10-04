@@ -11,14 +11,12 @@ import com.example.back_end.Repository.UnitTbRepository;
 import com.example.back_end.dto.Resource.ResourcePriceInfoTbSaveDto;
 import com.example.back_end.dto.Resource.ResourceTbSaveDto;
 import com.example.back_end.dto.Resource.UnitTbSaveDto;
-import com.example.back_end.vo.Resource.ResourceAllVo;
+import com.example.back_end.vo.Resource.ResourceInfoVo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -76,22 +74,25 @@ public class ResourceSerivce {
         return 1;
     }
 
-    public List<ResourceAllVo> GetInfo(String Date)
+    public List<ResourceInfoVo> GetInfo(String Date)
 
     {
         LocalDate startDate = LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
         LocalDate endDate = LocalDate.now();
         List<ResourcePriceInfoTb> result = infoRepository.findByResourcePriceInfoIdTb_ResourceDatePkBetweenOrderByResourceIdMk_resourceIdPk(startDate, endDate);
-        List<ResourceAllVo> voList = result.stream().map(
-                resourcePriceInfoTb -> ResourceAllVo.builder()
-                    .date(resourcePriceInfoTb.getResourcePriceInfoIdTb().getResourceDatePk())
-                    .price(resourcePriceInfoTb.getPrice())
-                    .korName(resourcePriceInfoTb.getResourceIdMk().getResourceKorName())
-                    .engName(resourcePriceInfoTb.getResourceIdMk().getResourceEngName())
-                    .Symbol(resourcePriceInfoTb.getResourceIdMk().getResourceSymbol())
-                    .unit(resourcePriceInfoTb.getUnitIdFk().getUnitName())
-                    .build()
+        List<ResourceInfoVo> voList = result.stream().map(
+                resourcePriceInfoTb -> ResourceInfoVo.builder()
+                        .date(resourcePriceInfoTb.getResourcePriceInfoIdTb().getResourceDatePk())
+                        .price(resourcePriceInfoTb.getPrice())
+                        .korName(resourcePriceInfoTb.getResourceIdMk().getResourceKorName())
+                        .engName(resourcePriceInfoTb.getResourceIdMk().getResourceEngName())
+                        .Symbol(resourcePriceInfoTb.getResourceIdMk().getResourceSymbol())
+                        .unit(resourcePriceInfoTb.getUnitIdFk().getUnitName())
+                        .build()
         ).collect(Collectors.toList());
+
+        voList = voList.stream().sorted(Comparator.comparing(ResourceInfoVo::getSymbol)).collect(Collectors.toList());
+
         return voList;
     }
 

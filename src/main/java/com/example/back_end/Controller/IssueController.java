@@ -4,6 +4,7 @@ package com.example.back_end.Controller;
 import com.example.back_end.Entity.IssueTb;
 import com.example.back_end.Service.IssueService;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
+import com.example.back_end.vo.Resource.IssueInfoVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +26,10 @@ public class IssueController {
         issueService.TbSave(issueTbDto);
     }
 
-    @GetMapping("/findall")
+    @GetMapping("/getinfo")
     public ResponseEntity<Object>  Findall(String date)
     {
-        List<IssueTb> result = issueService.find(date);
+        List<IssueInfoVo> result = issueService.find(date);
         return ResponseEntity.ok().body(
                 result);
     }

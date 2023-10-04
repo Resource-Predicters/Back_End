@@ -5,12 +5,13 @@ import com.example.back_end.Repository.ExchangeInfoTbRepository;
 import com.example.back_end.Repository.ExchangeTbRepository;
 import com.example.back_end.dto.Exchange.ExchageInfoTbSaveDto;
 import com.example.back_end.dto.Exchange.ExchageTbSaveDto;
-import com.example.back_end.vo.Resource.ExchangeAllVo;
+import com.example.back_end.vo.Resource.ExchangeInfoVo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -58,7 +59,7 @@ public class ExchageService {
         infoRepository.saveAll(entityList);
     }
 
-    public List<ExchangeAllVo>GetInfo(String Date)
+    public List<ExchangeInfoVo>GetInfo(String Date)
 
     {
         LocalDate startDate = LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
@@ -66,8 +67,8 @@ public class ExchageService {
         List<ExchangeInfoTb> result = infoRepository.findByExchangeInfoIdTb_ExchangeDatePkBetween(startDate, endDate);
 
 
-        List<ExchangeAllVo> voList = result.stream().map(
-                resourcePriceInfoTb -> ExchangeAllVo.builder()
+        List<ExchangeInfoVo> voList = result.stream().map(
+                resourcePriceInfoTb -> ExchangeInfoVo.builder()
                         .date(resourcePriceInfoTb.getExchangeInfoIdTb().getExchangeDatePk())
                         .exchangeRate(resourcePriceInfoTb.getExchangeRate())
                         .currencyName(resourcePriceInfoTb.getCurrencyIdPk().getCurrencyName())
@@ -76,8 +77,9 @@ public class ExchageService {
                         .build()
         ).collect(Collectors.toList());
 
-        return voList;
+        voList = voList.stream().sorted(Comparator.comparing(ExchangeInfoVo::getCurrencySymbol)).collect(Collectors.toList());
 
+        return voList;
     }
 
     public ExchangeTb findByCurrencyName(String CurrencyName) {

@@ -15,6 +15,7 @@ public class IssueTb {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int issueIdPk;
+
     @NotNull
     @Column(columnDefinition = "varchar (40)")
     private String title;
