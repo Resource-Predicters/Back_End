@@ -17,7 +17,7 @@ public class IssueTb {
     private int issueIdPk;
 
     @NotNull
-    @Column(columnDefinition = "varchar (40)")
+    @Column(columnDefinition = "varchar (100)")
     private String title;
 
     @NotNull

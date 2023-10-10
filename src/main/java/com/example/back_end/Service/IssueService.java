@@ -1,17 +1,16 @@
 package com.example.back_end.Service;
 
-
 import com.example.back_end.Entity.IssueTb;
 import com.example.back_end.Entity.ResourceTb;
 import com.example.back_end.Repository.IssueTbRepository;
 import com.example.back_end.Repository.ResourceTbRepository;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
-import com.example.back_end.vo.Resource.ExchangeInfoVo;
 import com.example.back_end.vo.Resource.IssueInfoVo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +24,18 @@ public class IssueService {
         this.tbRepository = tbRepository;
         this.resourceTbRepository = resourceTbRepository;
     }
-    public void TbSave(IssueSaveTbDto issueTbDto)
+    public void TbSave(List<IssueSaveTbDto> requestDto)
     {
-        tbRepository.save(issueTbDto.toEntity(FindResourceTbID(issueTbDto.getResourceSymbol()),LocalDate.parse(issueTbDto.getIssueDate(), DateTimeFormatter.ISO_DATE)));
+        List<IssueTb> entityList = new ArrayList<IssueTb>();
+        //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        for (IssueSaveTbDto dto : requestDto)
+        {
+            IssueTb saveEntity = dto.toEntity(
+                    FindResourceTbID(dto.getResourceSymbol()),
+                    LocalDate.parse(dto.getIssueDate(), DateTimeFormatter.ofPattern("yyyy.MM.dd.")));
+            entityList.add(saveEntity);
+        }
+        tbRepository.saveAll(entityList);
     }
     public List<IssueInfoVo> find(String Date)
     {
@@ -39,6 +47,7 @@ public class IssueService {
                         .title(IssueTb.getTitle())
                         .publisher(IssueTb.getPublisher())
                         .url(IssueTb.getUrl())
+                        .issueDate(IssueTb.getIssueDate())
                         .resourceKorName(IssueTb.getResourceIdPk().getResourceKorName())
                         .resourceEngName(IssueTb.getResourceIdPk().getResourceEngName())
                         .resourceSymbol(IssueTb.getResourceIdPk().getResourceSymbol())

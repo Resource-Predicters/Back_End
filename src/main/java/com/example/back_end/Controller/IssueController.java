@@ -1,7 +1,7 @@
 package com.example.back_end.Controller;
 
 
-import com.example.back_end.Entity.IssueTb;
+import com.example.back_end.Entity.ExchangeInfoIdTb;
 import com.example.back_end.Service.IssueService;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
 import com.example.back_end.vo.Resource.IssueInfoVo;
@@ -21,13 +21,13 @@ public class IssueController {
         this.issueService = issueService;
     }
     @PostMapping("/tbsave")
-    public void TbSave(@RequestBody IssueSaveTbDto issueTbDto)
+    public void TbSave(@RequestBody List<IssueSaveTbDto> issueTbDto)
     {
         issueService.TbSave(issueTbDto);
     }
 
     @GetMapping("/getinfo")
-    public ResponseEntity<Object>  Findall(String date)
+    public ResponseEntity<Object> Findall(String date)
     {
         List<IssueInfoVo> result = issueService.find(date);
         return ResponseEntity.ok().body(
