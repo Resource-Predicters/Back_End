@@ -15,7 +15,7 @@ spring:
 
     url: jdbc:mysql://db-master-stateful-0.db-stateful-headless:3306/information_schema
     username: master
-    password: qwer1234
+    password: cXdlcjEyMzQ=
 
   jpa:
     database: mysql
