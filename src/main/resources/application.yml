@@ -4,18 +4,18 @@ spring:
 #    url: jdbc:mysql://mydb.cjgeoyu2bayw.eu-north-1.rds.amazonaws.com:3306/resource_project
 #    username: admin
 #    password: qwer1234
-
-    url: jdbc:mysql://127.0.0.1:3306/ljj
-    username: root
-    password: qwer1234
+#
+#    url: jdbc:mysql://127.0.0.1:3306/ljj
+#    username: root
+#    password: qwer1234
 
 #    url : ${DBURL}
 #    username : ${DBUSER}
 #    password : ${DBPASSWORD}
-
-  #  url: jdbc:mysql://db-master-stateful-0.db-stateful-headless:3306/information_schema
-  #  username: master
-  #  password: cXdlcjEyMzQ=
+#
+    url: jdbc:mysql://db-master-stateful-0.db-stateful-headless:3306/test_db
+    username: master
+    password: qwer1234
 
   jpa:
     database: mysql
