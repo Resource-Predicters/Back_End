@@ -1,7 +1,7 @@
 package com.example.back_end.Controller;
 
 
-import com.example.back_end.Entity.ResourceTb;
+import com.example.back_end.Entity.Resource.ResourceTb;
 import com.example.back_end.Service.ResourceSerivce;
 import com.example.back_end.dto.Resource.ResourcePriceInfoTbSaveDto;
 import com.example.back_end.dto.Resource.ResourceTbSaveDto;

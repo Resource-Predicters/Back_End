@@ -1,8 +1,8 @@
 package com.example.back_end;
 
-import com.example.back_end.Entity.ResourcePriceInfoTb;
-import com.example.back_end.Entity.ResourceTb;
-import com.example.back_end.Entity.UnitTb;
+import com.example.back_end.Entity.Resource.ResourcePriceInfoTb;
+import com.example.back_end.Entity.Resource.ResourceTb;
+import com.example.back_end.Entity.Unit.UnitTb;
 import com.example.back_end.Repository.ResourceInfoRepository;
 import com.example.back_end.Repository.ResourceTbRepository;
 import com.example.back_end.Repository.UnitTbRepository;

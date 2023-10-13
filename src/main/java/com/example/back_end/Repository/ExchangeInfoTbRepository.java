@@ -1,7 +1,7 @@
 package com.example.back_end.Repository;
 
-import com.example.back_end.Entity.ExchangeInfoIdTb;
-import com.example.back_end.Entity.ExchangeInfoTb;
+import com.example.back_end.Entity.Exchange.ExchangeInfoIdTb;
+import com.example.back_end.Entity.Exchange.ExchangeInfoTb;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

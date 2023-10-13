@@ -1,7 +1,7 @@
 package com.example.back_end.dto.Exchange;
 
 
-import com.example.back_end.Entity.ExchangeTb;
+import com.example.back_end.Entity.Exchange.ExchangeTb;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;

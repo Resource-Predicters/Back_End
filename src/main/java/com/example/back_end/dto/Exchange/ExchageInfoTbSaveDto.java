@@ -1,9 +1,9 @@
 package com.example.back_end.dto.Exchange;
 
 
-import com.example.back_end.Entity.ExchangeInfoIdTb;
-import com.example.back_end.Entity.ExchangeInfoTb;
-import com.example.back_end.Entity.ExchangeTb;
+import com.example.back_end.Entity.Exchange.ExchangeInfoIdTb;
+import com.example.back_end.Entity.Exchange.ExchangeInfoTb;
+import com.example.back_end.Entity.Exchange.ExchangeTb;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;

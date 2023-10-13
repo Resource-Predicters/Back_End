@@ -1,6 +1,7 @@
 package com.example.back_end;
 
-import com.example.back_end.Entity.*;
+import com.example.back_end.Entity.Exchange.ExchangeInfoTb;
+import com.example.back_end.Entity.Exchange.ExchangeTb;
 import com.example.back_end.Repository.*;
 import com.example.back_end.dto.Exchange.ExchageInfoTbSaveDto;
 import com.example.back_end.dto.Exchange.ExchageTbSaveDto;

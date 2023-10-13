@@ -1,8 +1,8 @@
 package com.example.back_end.Repository;
 
 
-import com.example.back_end.Entity.ResourcePriceInfoIdTb;
-import com.example.back_end.Entity.ResourcePriceInfoTb;
+import com.example.back_end.Entity.Resource.ResourcePriceInfoIdTb;
+import com.example.back_end.Entity.Resource.ResourcePriceInfoTb;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

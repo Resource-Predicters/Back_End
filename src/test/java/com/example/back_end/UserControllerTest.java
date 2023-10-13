@@ -1,8 +1,8 @@
 package com.example.back_end;
 
-import com.example.back_end.Entity.Issue.IssueTb;
-import com.example.back_end.Repository.IssueTbRepository;
-import com.example.back_end.dto.issue.IssueSaveTbDto;
+import com.example.back_end.Entity.User.UserEntity;
+import com.example.back_end.Repository.UserEntityRepository;
+import com.example.back_end.dto.User.UserJoinDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,13 +23,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class IssueControllerTest {
+public class UserControllerTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private IssueTbRepository tbRepository;
+    private UserEntityRepository userEntityRepository;
 
     @Autowired
     private WebApplicationContext context;
@@ -41,35 +41,55 @@ public class IssueControllerTest {
                 .webAppContextSetup(context)
                 .build();
     }
-    @Test
-    public void IssueTb_save_test() throws Exception{
-        //given
-        String title= "title1";
-        String publisher = "publisher1";
-        String url = "url1";
-        String issueDate = "2023-09-25";
-        String resourceSymbol = "Ni";
 
-        IssueSaveTbDto requestDto = IssueSaveTbDto.builder()
-                .title(title)
-                .publisher(publisher)
-                .url(url)
-                .issueDate(issueDate)
-                .resourceSymbol(resourceSymbol)
+    @Test
+    public void join_test() throws Exception {
+        //given
+
+        String name = "test";
+        String password = "qwer1234";
+
+
+            UserJoinDto requestDto = UserJoinDto.builder()
+                    .name(name)
+                    .password(password)
+                    .build();
+
+            String url = "http://localhost:" + port + "/user/join";
+            //when
+            mvc.perform(post(url)
+                            .contentType(MediaType.APPLICATION_JSON_UTF8)
+                            .content(new ObjectMapper().writeValueAsString(requestDto)))
+                    .andExpect(status().isOk());
+
+        //then
+        List<UserEntity> all = userEntityRepository.findAll();
+//        assertThat(all.get(0).getCountry()).isEqualTo(country.get(0));
+    }
+
+    @Test
+    public void login_test() throws Exception {
+        //given
+
+        String name = "test";
+        String password = "qwer1234";
+
+
+        UserJoinDto requestDto = UserJoinDto.builder()
+                .name(name)
+                .password(password)
                 .build();
 
-
-
-        String url2 = "http://localhost:" + port + "/issue/tbsave";
+        String url = "http://localhost:" + port + "/user/login";
         //when
-        mvc.perform(post(url2)
+        mvc.perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
 
         //then
-        List<IssueTb> all = tbRepository.findAll();
+        List<UserEntity> all = userEntityRepository.findAll();
 //        assertThat(all.get(0).getCountry()).isEqualTo(country.get(0));
-
     }
+
 }

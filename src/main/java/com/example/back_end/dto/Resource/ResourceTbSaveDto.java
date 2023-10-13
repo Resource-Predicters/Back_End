@@ -1,6 +1,6 @@
 package com.example.back_end.dto.Resource;
 
-import com.example.back_end.Entity.ResourceTb;
+import com.example.back_end.Entity.Resource.ResourceTb;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

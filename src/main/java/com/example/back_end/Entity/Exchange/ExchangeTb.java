@@ -1,4 +1,4 @@
-package com.example.back_end.Entity;
+package com.example.back_end.Entity.Exchange;
 
 import com.sun.istack.NotNull;
 import lombok.Builder;

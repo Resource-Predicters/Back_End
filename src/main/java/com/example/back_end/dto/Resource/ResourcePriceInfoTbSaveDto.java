@@ -1,10 +1,10 @@
 package com.example.back_end.dto.Resource;
 
 
-import com.example.back_end.Entity.ResourcePriceInfoIdTb;
-import com.example.back_end.Entity.ResourcePriceInfoTb;
-import com.example.back_end.Entity.ResourceTb;
-import com.example.back_end.Entity.UnitTb;
+import com.example.back_end.Entity.Resource.ResourcePriceInfoIdTb;
+import com.example.back_end.Entity.Resource.ResourcePriceInfoTb;
+import com.example.back_end.Entity.Resource.ResourceTb;
+import com.example.back_end.Entity.Unit.UnitTb;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;

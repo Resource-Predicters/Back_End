@@ -1,5 +1,6 @@
-package com.example.back_end.Entity;
+package com.example.back_end.Entity.Issue;
 
+import com.example.back_end.Entity.Resource.ResourceTb;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;

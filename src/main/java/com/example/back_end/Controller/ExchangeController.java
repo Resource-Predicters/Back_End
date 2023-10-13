@@ -1,11 +1,11 @@
 package com.example.back_end.Controller;
 
 
-import com.example.back_end.Entity.ExchangeTb;
+import com.example.back_end.Entity.Exchange.ExchangeTb;
 import com.example.back_end.Service.ExchageService;
 import com.example.back_end.dto.Exchange.ExchageInfoTbSaveDto;
 import com.example.back_end.dto.Exchange.ExchageTbSaveDto;
-import com.example.back_end.vo.Resource.ExchangeInfoVo;
+import com.example.back_end.vo.Exchange.ExchangeInfoVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

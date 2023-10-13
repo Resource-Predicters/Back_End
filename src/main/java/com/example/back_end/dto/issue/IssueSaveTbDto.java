@@ -1,6 +1,7 @@
 package com.example.back_end.dto.issue;
 
-import com.example.back_end.Entity.*;
+import com.example.back_end.Entity.Issue.IssueTb;
+import com.example.back_end.Entity.Resource.ResourceTb;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;

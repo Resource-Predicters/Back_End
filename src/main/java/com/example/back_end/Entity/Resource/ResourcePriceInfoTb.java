@@ -1,6 +1,7 @@
-package com.example.back_end.Entity;
+package com.example.back_end.Entity.Resource;
 
 
+import com.example.back_end.Entity.Unit.UnitTb;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;

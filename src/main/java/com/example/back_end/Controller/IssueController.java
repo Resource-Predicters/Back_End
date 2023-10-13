@@ -1,7 +1,6 @@
 package com.example.back_end.Controller;
 
 
-import com.example.back_end.Entity.ExchangeInfoIdTb;
 import com.example.back_end.Service.IssueService;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
 import com.example.back_end.vo.Resource.IssueInfoVo;

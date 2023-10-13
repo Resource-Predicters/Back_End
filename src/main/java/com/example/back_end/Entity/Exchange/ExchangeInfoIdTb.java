@@ -1,4 +1,4 @@
-package com.example.back_end.Entity;
+package com.example.back_end.Entity.Exchange;
 
 import com.example.back_end.Repository.IssueTbRepository;
 import com.example.back_end.Repository.ResourceTbRepository;

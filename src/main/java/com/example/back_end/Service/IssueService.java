@@ -1,7 +1,7 @@
 package com.example.back_end.Service;
 
-import com.example.back_end.Entity.IssueTb;
-import com.example.back_end.Entity.ResourceTb;
+import com.example.back_end.Entity.Issue.IssueTb;
+import com.example.back_end.Entity.Resource.ResourceTb;
 import com.example.back_end.Repository.IssueTbRepository;
 import com.example.back_end.Repository.ResourceTbRepository;
 import com.example.back_end.dto.issue.IssueSaveTbDto;

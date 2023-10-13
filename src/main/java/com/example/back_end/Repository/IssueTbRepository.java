@@ -1,7 +1,6 @@
 package com.example.back_end.Repository;
 
-import com.example.back_end.Entity.IssueTb;
-import com.example.back_end.Entity.ResourceTb;
+import com.example.back_end.Entity.Issue.IssueTb;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

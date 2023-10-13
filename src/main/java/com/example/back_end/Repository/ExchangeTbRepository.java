@@ -1,6 +1,6 @@
 package com.example.back_end.Repository;
 
-import com.example.back_end.Entity.ExchangeTb;
+import com.example.back_end.Entity.Exchange.ExchangeTb;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
