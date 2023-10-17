@@ -1,17 +1,17 @@
 spring:
   datasource:
     driver-class-name : com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DBURL}/${DB}
-    username: ${DBUSER}
-    password: ${DBPASSWORD}
+#    url: jdbc:mysql://${DBURL}/${DB}
+#    username: ${DBUSER}
+#    password: ${DBPASSWORD}
 #
 #    url: jdbc:mysql://127.0.0.1:3306/ljj
 #    username: root
 #    password: qwer1234
 
-#    url: jdbc:mysql://db-master-stateful-0.db-stateful-headless:3306/test_db
-#    username: master
-#    password: qwer1234
+    url: jdbc:mysql://db-master-stateful-0.db-stateful-headless:3306/test_db
+    username: root
+    password: root
 
   jpa:
     database: mysql
