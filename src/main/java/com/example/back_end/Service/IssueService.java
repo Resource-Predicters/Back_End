@@ -5,7 +5,7 @@ import com.example.back_end.Entity.Resource.ResourceTb;
 import com.example.back_end.Repository.IssueTbRepository;
 import com.example.back_end.Repository.ResourceTbRepository;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
-import com.example.back_end.vo.Resource.IssueInfoVo;
+import com.example.back_end.vo.Issue.IssueInfoVo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

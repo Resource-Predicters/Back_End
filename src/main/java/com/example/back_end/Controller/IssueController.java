@@ -3,7 +3,7 @@ package com.example.back_end.Controller;
 
 import com.example.back_end.Service.IssueService;
 import com.example.back_end.dto.issue.IssueSaveTbDto;
-import com.example.back_end.vo.Resource.IssueInfoVo;
+import com.example.back_end.vo.Issue.IssueInfoVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

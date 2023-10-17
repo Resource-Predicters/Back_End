@@ -12,6 +12,7 @@ import com.example.back_end.dto.Resource.ResourcePriceInfoTbSaveDto;
 import com.example.back_end.dto.Resource.ResourceTbSaveDto;
 import com.example.back_end.dto.Resource.UnitTbSaveDto;
 import com.example.back_end.vo.Resource.ResourceInfoVo;
+import netscape.javascript.JSObject;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -80,6 +81,10 @@ public class ResourceSerivce {
         LocalDate startDate = LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
         LocalDate endDate = LocalDate.now();
         List<ResourcePriceInfoTb> result = infoRepository.findByResourcePriceInfoIdTb_ResourceDatePkBetweenOrderByResourceIdMk_resourceIdPk(startDate, endDate);
+
+
+
+
         List<ResourceInfoVo> voList = result.stream().map(
                 resourcePriceInfoTb -> ResourceInfoVo.builder()
                         .date(resourcePriceInfoTb.getResourcePriceInfoIdTb().getResourceDatePk())
