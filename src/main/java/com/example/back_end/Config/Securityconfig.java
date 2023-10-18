@@ -28,8 +28,8 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/join", "/user/login").permitAll()
-                .antMatchers("/user/profile").authenticated()
+                .antMatchers("/user/join", "/user/login","/user/profile").permitAll()
+//                .antMatchers("/user/profile").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .sessionManagement()
