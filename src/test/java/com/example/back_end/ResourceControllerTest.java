@@ -6,6 +6,7 @@ import com.example.back_end.Entity.Unit.UnitTb;
 import com.example.back_end.Repository.ResourceInfoRepository;
 import com.example.back_end.Repository.ResourceTbRepository;
 import com.example.back_end.Repository.UnitTbRepository;
+import com.example.back_end.dto.Resource.ResourceAiDataSaveDto;
 import com.example.back_end.dto.Resource.ResourcePriceInfoTbSaveDto;
 import com.example.back_end.dto.Resource.ResourceTbSaveDto;
 import com.example.back_end.dto.Resource.UnitTbSaveDto;
@@ -168,6 +169,50 @@ public class ResourceControllerTest {
 //       assertThat(all.get(0).getResourceDatePk()).isEqualTo(resourceDatePk);
 //        assertThat(all.get(0).getResource_kor_name()).isEqualTo(price);
     }
+
+    @Test
+    public void ResourceAiData_save_test() throws Exception{
+        //given
+//        String resourceDatePk = "2023-09-15";
+        List<Float> price = new ArrayList<Float>() ;
+        price.add(20255f);
+        price.add(172.5f);
+        price.add(505f);
+        price.add(33420f);
+        List<String> resourceSymbol = new ArrayList<String>();
+        resourceSymbol.add("Ni");
+        resourceSymbol.add("Li");
+        resourceSymbol.add("Fe");
+        resourceSymbol.add("Co");
+
+        List<ResourceAiDataSaveDto> requests = new ArrayList<ResourceAiDataSaveDto>();
+
+        for (int j = 0; j < 4; j++)
+        {
+            for (int i = 1; i < 30; i++)
+            {
+                String resourceAiDatePk = "";
+                if(i < 10) { resourceAiDatePk = "2023-10-0" + Integer.toString(i); }
+                else { resourceAiDatePk = "2023-10-" + Integer.toString(i); }
+                ResourceAiDataSaveDto entity = ResourceAiDataSaveDto.builder()
+                        .resourceAiDatePk(resourceAiDatePk)
+                        .price(price.get(j) + i)
+                        .resourceTbSymbol(resourceSymbol.get(j))
+                        .build();
+                requests.add(entity);
+            }
+        }
+
+        String url = "http://localhost:" + port + "/resource/aidatasave";
+
+        //when
+        mvc.perform(post(url)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(new ObjectMapper().writeValueAsString(requests)))
+                .andExpect(status().isOk());
+
+    }
+
 
 
     @Test

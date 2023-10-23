@@ -11,7 +11,7 @@ public interface IssueTbRepository extends JpaRepository<IssueTb, Integer> {
     @Query(value ="SELECT i, r " +
             "FROM IssueTb i LEFT OUTER JOIN ResourceTb r on i.resourceIdPk = r " +
             "WHERE i.issueDate BETWEEN :start AND :end " +
-            "ORDER BY i.resourceIdPk.resourceIdPk, i.issueDate"
+            "ORDER BY i.resourceIdPk.resourceIdPk, i.issueDate DESC "
     )
     List<IssueTb> findByIssueDateBetween(LocalDate start, LocalDate end);
 

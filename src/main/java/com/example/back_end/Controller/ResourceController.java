@@ -3,6 +3,7 @@ package com.example.back_end.Controller;
 
 import com.example.back_end.Entity.Resource.ResourceTb;
 import com.example.back_end.Service.ResourceSerivce;
+import com.example.back_end.dto.Resource.ResourceAiDataSaveDto;
 import com.example.back_end.dto.Resource.ResourcePriceInfoTbSaveDto;
 import com.example.back_end.dto.Resource.ResourceTbSaveDto;
 import com.example.back_end.dto.Resource.UnitTbSaveDto;
@@ -37,6 +38,20 @@ public class ResourceController {
     public ResponseEntity<Object> GetInfo(String date)
     {
         List<ResourceInfoVo> result = resourceSerivce.GetInfo(date);
+        return ResponseEntity.ok().body(
+                result);
+    }
+
+    @PostMapping("/aidatasave")
+    public void AiDataSave(@RequestBody List<ResourceAiDataSaveDto> requestDto )
+    {
+        resourceSerivce.ResourceAiDataSave(requestDto);
+    }
+
+    @GetMapping("/getaidata")
+    public ResponseEntity<Object> GetAiData(String date)
+    {
+        List<ResourceInfoVo> result = resourceSerivce.GetAiData(date);
         return ResponseEntity.ok().body(
                 result);
     }

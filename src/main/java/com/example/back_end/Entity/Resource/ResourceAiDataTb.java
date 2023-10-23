@@ -1,6 +1,5 @@
 package com.example.back_end.Entity.Resource;
 
-
 import com.example.back_end.Entity.Unit.UnitTb;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -10,39 +9,31 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ResourcePriceInfoTb {
+public class ResourceAiDataTb {
 
     @EmbeddedId
-    private ResourcePriceInfoIdTb resourcePriceInfoIdTb;
+    private ResourceAiDataIdTb resourceAiDataIdTb;
 
-    @MapsId("resourceIdMk")
+    @MapsId("resourceAiIdMk")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ResourceIdMk")
+    @JoinColumn(name = "resource_ai_id_mk")
     private ResourceTb resourceIdMk;
 
     @NotNull
     private float price;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UnitTbPk")
-    private UnitTb unitIdFk;
-
     @Builder
-    public ResourcePriceInfoTb(ResourcePriceInfoIdTb resourcePriceInfoIdTb,
-                               ResourceTb resourceIdMk,
-                               float price,
-                               UnitTb unitIdFk) {
-        this.resourcePriceInfoIdTb = resourcePriceInfoIdTb;
+    public ResourceAiDataTb(ResourceAiDataIdTb resourceAiDataIdTb,
+                            ResourceTb resourceIdMk,
+                            float price) {
+        this.resourceAiDataIdTb = resourceAiDataIdTb;
         this.resourceIdMk = resourceIdMk;
         this.price = price;
-        this.unitIdFk = unitIdFk;
     }
-
-
 }
