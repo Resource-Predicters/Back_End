@@ -13,6 +13,11 @@ spring:
 #    username: root
 #    password: root
 
+#  DBURL = "jdbc:mysql://mydb.cjgeoyu2bayw.eu-north-1.rds.amazonaws.com:3306"
+#  DB = "resource_project"
+#  DBUSER = "admin"
+#  DBPASSWORD = "qwer1234"
+
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5Dialect

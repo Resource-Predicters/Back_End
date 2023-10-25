@@ -144,8 +144,8 @@ public class ResourceControllerTest {
             for (int i = 1; i < 30; i++)
             {
                 String resourceDatePk = "";
-                if(i < 10) { resourceDatePk = "2023-09-0" + Integer.toString(i); }
-                else { resourceDatePk = "2023-09-" + Integer.toString(i); }
+                if(i < 10) { resourceDatePk = "2023-08-0" + Integer.toString(i); }
+                else { resourceDatePk = "2023-08-" + Integer.toString(i); }
                 ResourcePriceInfoTbSaveDto entity = ResourcePriceInfoTbSaveDto.builder()
                         .resourceDatePk(resourceDatePk)
                         .price(price.get(j) + i)

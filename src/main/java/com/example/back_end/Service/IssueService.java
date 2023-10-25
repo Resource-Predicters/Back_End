@@ -32,7 +32,7 @@ public class IssueService {
         {
             IssueTb saveEntity = dto.toEntity(
                     FindResourceTbID(dto.getResourceSymbol()),
-                    LocalDate.parse(dto.getIssueDate(), DateTimeFormatter.ofPattern("yyyy.MM.dd.")));
+                    LocalDate.parse(dto.getIssueDate(), DateTimeFormatter.ISO_DATE));
             entityList.add(saveEntity);
         }
         tbRepository.saveAll(entityList);
