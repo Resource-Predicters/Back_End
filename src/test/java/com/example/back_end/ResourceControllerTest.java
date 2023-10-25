@@ -103,7 +103,7 @@ public class ResourceControllerTest {
 
     @Test
     public void UnitTb_save_test() throws Exception{
-        String unitName = "USD/ton";
+        String unitName = "RMB/kg";
         UnitTbSaveDto requestDto = UnitTbSaveDto.builder()
                 .unitName(unitName)
                 .build();
