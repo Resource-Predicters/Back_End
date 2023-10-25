@@ -1,4 +1,4 @@
-<h1 align="center">~~~ 프로젝트 프론트엔드 💻 </h1>
+<h1 align="center">데이터 수집과 예측 프로젝트 백엔드 💻 </h1>
 
 ## 🛠️ 기술 스택
 
@@ -18,7 +18,7 @@
 
 - SpringBoot : Java를 사용한 프로젝트를 빠른 시간안에 만들 수 있어서
 - Springsecurity : 로그인과 권한에 따른 페이지 제어를 위해서
-- Java Persisitence API :
+- Java Persisitence API : DB 생성과 CRUD를 일회성이 아닌
 - JsonWebTokens : 유저의 권한 수준과 로그인 유무를 확인하기 위해서
 - gradle : maven 보다 좋은가?
 - mysql : RDBMS를 통해 정형화되고 일정한 데이터를 받기위해서
