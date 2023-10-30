@@ -192,8 +192,8 @@ public class ResourceControllerTest {
             for (int i = 1; i < 30; i++)
             {
                 String resourceAiDatePk = "";
-                if(i < 10) { resourceAiDatePk = "2023-10-0" + Integer.toString(i); }
-                else { resourceAiDatePk = "2023-10-" + Integer.toString(i); }
+                if(i < 10) { resourceAiDatePk = "2023-11-0" + Integer.toString(i); }
+                else { resourceAiDatePk = "2023-11-" + Integer.toString(i); }
                 ResourceAiDataSaveDto entity = ResourceAiDataSaveDto.builder()
                         .resourceAiDatePk(resourceAiDatePk)
                         .price(price.get(j) + i)
